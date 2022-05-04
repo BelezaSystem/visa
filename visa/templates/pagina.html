@@ -1,0 +1,49 @@
+{% load static %}
+
+<h1>Consulta Atividades Vigilância Sanitária</h1>
+<section class="Pesquisar">
+    <div class="center">
+        <div class="container_form ">
+            <h2>Pesquisar Livros</h2>
+            <i class="iconPesq fas fa-search"></i>
+            <form action="" method="GET" id="search-form" class="validate" novalidate>
+                <input class="inp" type="text" name="search" placeholder="Pesquisar"><br>
+                <input class="inp" type="submit" value="Pesquisar" id="search-btn">
+                <select name="options" id="">
+                    <option value="todos" name="todos">Todos</option>
+                    <option value="atividade" name="atividade">Descrição de Atividade</option>
+                    <option value="cnae" name="cnae">Cnae</option>
+                </select>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-3">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">Cnae</th>
+                    <th scope="col">Atividade</th>
+                    <th scope="col">Grau de Risco</th>
+                    <th scope="col">Órgão</th>
+                    <th scope="col">Numero Pergunta</th>
+                    <th scope="col">Pergunta</th>
+                </tr>
+            </thead>
+            {% for a in atividades %}
+            <tbody>
+                <tr class="table-light">
+                    <td>{{ a.cnae }}</td>
+                    <td>{{ a.atividade }}</td>
+                    <td>{{ a.grau_risco }}</td>
+                    <td>{{ a.orgao }}</td>
+                    <td>{{ a.num_pergunta }}</td>
+                    <td>{{ a.num_pergunta.pergunta }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>

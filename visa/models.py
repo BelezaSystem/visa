@@ -22,7 +22,7 @@ class Atividades(models.Model):
     atividade = models.CharField(max_length=500)
     grau_risco = models.CharField(max_length=100)
     num_pergunta = models.ForeignKey(Perguntas, on_delete=models.CASCADE)
-    orgao = models.CharField(max_length=50)
+    orgao = models.CharField(max_length=50, blank=True)
 
     class Meta:
         verbose_name = 'Atividade'

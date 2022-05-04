@@ -1,7 +1,20 @@
-from django.shortcuts import render
-from API_Cnpj import pega_resultado
-# Create your views here.
+from django.views.generic import TemplateView
+from .models import Atividades, Perguntas
 
-'''
-pega_resultado(cnpj)
-'''
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        search = self.request.GET.get('search')
+        option = self.request.GET.get('options')
+
+        if search:
+            if option == 'cnae':
+                context['atividades'] = Atividades.objects.filter(cnae=search)  # busca exata por cnae
+            elif option == 'atividade':
+                context['atividades'] = Atividades.objects.filter(atividade__istartswith=search)  # busca por string
+            else:
+                context['atividades'] = Atividades.objects.all()
+        return context
