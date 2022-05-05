@@ -18,3 +18,12 @@ class IndexView(TemplateView):
             else:
                 context['atividades'] = Atividades.objects.all()
         return context
+
+
+class CnpjView(TemplateView):
+    template_name = 'cnpj.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CnpjView, self).get_context_data(**kwargs)
+        context['atividades'] = Atividades.objects.all()
+        return context

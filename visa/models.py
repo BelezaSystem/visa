@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Perguntas(models.Model):
     numero = models.CharField(max_length=3)
-    pergunta = models.CharField(max_length=500)
+    pergunta = models.CharField(max_length=500, blank=True)
 
     class Meta:
         ordering = ('numero',)

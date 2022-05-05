@@ -1,0 +1,21 @@
+td {
+    text-align: center;
+}
+
+#nav{
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 45px;
+	padding-left: 8%;
+	padding-right: 8%;
+	font-size: 1.5vw;
+	position: fixed;
+	z-index: 5;
+	width: 100%;
+    background-color: #e3f2fd;
+}
+
+.buscar{
+	padding-top: 150px;
+}
