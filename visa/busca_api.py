@@ -72,12 +72,3 @@ def pega_resultado(cnpj):
         return 'CNPJ "{0}" tem formato inválido'.format(cnpj)
     else:
         return busca_cnpj(parse_input(cnpj))
-
-
-class buscar_cnpj:
-
-    def resultado(self, cnpj):
-        if not valida_cnpj(cnpj):
-            return 'CNPJ "{0}" tem formato inválido'.format(cnpj)
-        else:
-            return busca_cnpj(parse_input(cnpj))

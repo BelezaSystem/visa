@@ -1,5 +1,5 @@
 from django.db import models
-from busca_api import buscar_cnpj
+
 
 
 class Perguntas(models.Model):
@@ -15,7 +15,7 @@ class Perguntas(models.Model):
         return self.numero
 
 
-class Atividades(models.Model, buscar_cnpj):
+class Atividades(models.Model):
     cnae = models.CharField(max_length=10)
     atividade = models.CharField(max_length=500)
     grau_risco = models.CharField(max_length=100)

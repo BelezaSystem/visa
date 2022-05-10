@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from .models import Atividades
-from busca_api import busca_cnpj
+from .busca_api import pega_resultado
 
 
 class IndexView(TemplateView):
@@ -11,13 +11,14 @@ class IndexView(TemplateView):
         search = self.request.GET.get('search')
         option = self.request.GET.get('options')
 
-        if search:
+        if not search:
+            context['atividades'] = Atividades.objects.all()
+        else:
             if option == 'cnae':
+
                 context['atividades'] = Atividades.objects.filter(cnae=search)  # busca exata por cnae
             elif option == 'atividade':
-                context['atividades'] = Atividades.objects.filter(atividade__istartswith=search)  # busca por string
-            else:
-                context['atividades'] = Atividades.objects.all()
+                context['atividades'] = Atividades.objects.filter(atividade__icontains=search)  # busca por string
         return context
 
 
@@ -31,6 +32,6 @@ class CnpjView(TemplateView):
                '77.32-2-01', '43.19-3-00', '43.11-8-02']
         context = super(CnpjView, self).get_context_data(**kwargs)
         search = self.request.GET.get('search')
-        buscar = busca_cnpj(search)
+        buscar = pega_resultado(search)
         context['atividades'] = Atividades.objects.filter(cnae__in=buscar)
         return context
