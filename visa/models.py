@@ -1,7 +1,5 @@
 from django.db import models
-from django.urls import reverse
-from django.utils import timezone
-from django.contrib.auth.models import User
+from busca_api import buscar_cnpj
 
 
 class Perguntas(models.Model):
@@ -17,7 +15,7 @@ class Perguntas(models.Model):
         return self.numero
 
 
-class Atividades(models.Model):
+class Atividades(models.Model, buscar_cnpj):
     cnae = models.CharField(max_length=10)
     atividade = models.CharField(max_length=500)
     grau_risco = models.CharField(max_length=100)

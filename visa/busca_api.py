@@ -49,12 +49,20 @@ def busca_cnpj(cnpj):
     url = 'https://receitaws.com.br/v1/cnpj/{0}'.format(cnpj)
     response = requests.request("GET", url)
     dic = json.loads(response.text)
+    cnaes = []
 
     if dic['status'] == "ERROR":
         return 'CNPJ {0} rejeitado pela receita federal\n\n'.format(cnpj)
     else:
         try:
-            return dic
+            # Atividade Principal
+            cnaes.append(dic['atividade_principal'][0]['code'])
+
+            # Atividades secundárias
+            for elem in dic['atividades_secundarias']:
+                cnaes.append(elem['code'])
+
+            return cnaes
         except KeyError:
             pass
 
