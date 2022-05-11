@@ -21,6 +21,11 @@
                     <th scope="col">Pergunta</th>
                 </tr>
                 </thead>
+                {% if atividades == "vazio" %}
+                 <script>
+                     alert('Cnpj invalido')
+                 </script>
+                {% else %}
                 {% for a in atividades %}
                 <tbody>
                 <tr class="table-light">
@@ -33,6 +38,7 @@
                 </tr>
                 </tbody>
                 {% endfor %}
+                {% endif %}
             </table>
         </div>
     </div>
