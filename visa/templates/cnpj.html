@@ -1,46 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-{% include 'headercnpj.html' %}
-
-<div class="buscar">
+{% include 'navbar.html' %}
+<div class="height-100 bg-light">
     <div class="d-flex justify-content-center">
-        <h1>Consulta Atividades</h1>
+        <h1>CONSULTA CNPJ</h1>
     </div>
     <div class="container mt-3">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead style="text-align: center">
-                <tr class="table-success">
-                    <th scope="col">Cnae</th>
-                    <th scope="col">Atividade</th>
-                    <th scope="col">Grau de Risco</th>
-                    <th scope="col">Órgão</th>
-                    <th scope="col">Numero Pergunta</th>
-                    <th scope="col">Pergunta</th>
-                </tr>
-                </thead>
-                {% if atividades == "vazio" %}
-                 <script>
-                     alert('Cnpj invalido')
-                 </script>
-                {% else %}
-                {% for a in atividades %}
-                <tbody>
-                <tr class="table-light">
-                    <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">{{ a.cnae }}</td>
-                    <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{ a.atividade }}</td>
-                    <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ a.grau_risco }}</td>
-                    <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ a.orgao }}</td>
-                    <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ a.num_pergunta }}</td>
-                    <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{ a.num_pergunta.pergunta }}</td>
-                </tr>
-                </tbody>
-                {% endfor %}
-                {% endif %}
-            </table>
-        </div>
+        <form class="d-flex">
+            <input class="form-control me-2" type="text" name="search" placeholder="Digite o CNPJ"
+                   aria-label="Pesquisar">
+            <button class="btn btn-outline-secondary" value="Pesquisar" type="submit">Pesquisar</button>
+        </form>
+    </div>
+    <div class="container mt-3">
+        <table class="table table-bordered">
+            <thead style="text-align: center">
+            <tr class="bg-secondary text-white">
+                <th scope="col">Cnae</th>
+                <th scope="col">Atividade</th>
+                <th scope="col">Grau de Risco</th>
+                <th scope="col">Órgão</th>
+                <th scope="col">Numero Pergunta</th>
+                <th scope="col">Pergunta</th>
+            </tr>
+            </thead>
+            {% if atividades == "vazio" %}
+            <script>
+                     alert('Cnpj inválido!!!')
+            </script>
+            {% else %}
+            {% for a in atividades %}
+            <tbody>
+            <tr class="table-light">
+                <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="text-align: center">{{ a.cnae }}</td>
+                <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{ a.atividade }}</td>
+                <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ a.grau_risco }}</td>
+                <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ a.orgao }}</td>
+                <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ a.num_pergunta }}</td>
+                <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{ a.num_pergunta.pergunta }}</td>
+            </tr>
+            </tbody>
+            {% endfor %}
+            {% endif %}
+        </table>
     </div>
 </div>
+</div>
+{% include 'footer.html' %}
 {% endblock %}
